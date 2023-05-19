@@ -7,9 +7,9 @@ const client = redis.createClient({
 });
 
 export const cache = async (req, res, next) => {
-  const { trackingNumber } = req.body;
+  const { value } = req.body;
   await connect();
-  let result = await getCachedValue(trackingNumber);
+  let result = await getCachedValue(value);
   if (result) {
     return res.status(200).json({status: result});
   } else {
